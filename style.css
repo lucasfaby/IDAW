@@ -1,0 +1,51 @@
+.conteneur-flexible{
+display: flex;
+font-size: 20px;
+background-color: #0AD; /*Bleu*/
+border: 2px solid blue;
+box-sizing: border-box;
+margin: 20px 0px;
+}
+.ligne{
+flex-direction: row; /*Axe principal = axe horizontal*/
+}
+.ligne-inverse{
+flex-direction: row-reverse; /*Axe principal = axe horizontal*/
+}
+.colonne{
+flex-direction: column; /*Axe principal = axe vertical*/
+}
+.colonne-inverse{
+flex-direction: column-reverse; /*Axe principal = axe vertical*/
+}
+.element-flexible{
+flex-basis: 25%;
+width: 25%;
+height: 25%;
+background-color: #0DA; /*Vert*/
+padding: 10px 0px;
+text-align: center;
+border: 2px solid green;
+box-sizing: border-box;
+margin: 5px;
+}
+.element-flexible-2{
+    flex-basis: 100%;
+    width: 100%;
+    height: 25%;
+    background-color: #0DA; /*Vert*/
+    padding: 10px 0px;
+    text-align: center;
+    border: 2px solid green;
+    box-sizing: border-box;
+    margin: 5px;
+    }
+
+.currentpage{
+    font-weight: bold;
+    color: black;
+}
+
+a{
+ color: blue;
+}
