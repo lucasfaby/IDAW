@@ -8,14 +8,14 @@ require_once('php/template_header.php');
         <?php
             //Affiche "Hello World" avec un retour à la ligne
             echo 'Voici la date:<br>'; //Ceci est un commentaire PHP
-            echo date('l jS \of F Y h:i:s A');
+            echo date('l jS \of F Y');
         ?>
 <nav class="conteneur-flexible ligne">
-    <ul class="element-flexible">
-        <li class=><a href="index.php" class="currentpage">Accueil</a></li>
-        <li class=><a href="cv.php">CV</a></li>
-        <li class=><a href="projets.php">Projets</a></li>
-    </ul>
+<?php
+require_once('php/template_menu.php');
+renderMenuToHTML('index');
+?>
+
     <div class="element-flexible-2">
         <h1>Post quorum necem nihilo lenius ferociens Gallus ut leo </h1>
         <br>
