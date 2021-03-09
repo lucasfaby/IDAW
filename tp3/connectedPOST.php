@@ -14,6 +14,7 @@ $tryPwd=$_POST['password'];
 if( array_key_exists($tryLogin,$users) && $users[$tryLogin]==$tryPwd ) {
 $successfullyLogged = true;
 $login = $tryLogin;
+$_SESSION["login"]=$login;
 } else
 $errorText = "Erreur de login/password";
 } else
@@ -23,4 +24,14 @@ echo $errorText;
 } else {
 echo "<h1>Bienvenue ".$login."</h1>";
 }
+
 ?>
+
+
+<?php
+if(isset($_SESSION["login"])){
+        echo "<h1>".$_SESSION["login"]."</h1>";
+    }
+?>
+
+

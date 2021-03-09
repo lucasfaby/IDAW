@@ -1,3 +1,6 @@
+<?php
+session_start();
+  ?>  
 <form id="login_form" action="connectedPOST.php" method="POST">
 <table>
 <tr>
@@ -14,3 +17,5 @@
 </tr>
 </table>
 </form>
+
+
