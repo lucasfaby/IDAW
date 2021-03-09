@@ -7,8 +7,20 @@
 <link rel="stylesheet" type="text/css" href="style/style.css">
 </head>
 <?php
+$currentPageId = 'accueil';
+if(isset($_GET['page'])) {
 $currentPageId = $_GET['page'];
-$lang = $_GET['lang'];
+}
+if(isset($_GET['lang'])){
+    $lang = $_GET['lang'];
+    setcookie("lang", $lang);
+}else{
+    if(isset($_COOKIE["lang"])){
+        $lang = $_COOKIE["lang"];
+    }else{
+        $lang="en";
+    }
+}
 if($lang=="en"){
     echo "<a href=\"index.php?page=".$currentPageId."&lang=fr\" class=\"sla\">Switch to French</a>" ;
 }
