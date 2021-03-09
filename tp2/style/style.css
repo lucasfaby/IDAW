@@ -49,6 +49,17 @@ background: rgb(240,240,240);
     color: black;
 }
 
+.sla{
+    font-weight:bolder;
+    color:cadetblue;    
+    text-align: right;
+    position:absolute;
+    right: 30px;
+    top: 30px;
+    /*background-color: chartreuse;*/
+}
+
 a{
  color: rgb(40,40,40);
 }
+
