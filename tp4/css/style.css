@@ -1,0 +1,18 @@
+*{
+    padding: 0px;
+    margin: 0px;
+    box-sizing: border-box;
+}
+
+.carousel-container{
+    width: 60%;
+    margin: auto;
+    /*overflow: hidden;*/
+    border: black 5px;
+}
+
+.carousel-slide{
+    display: flex;
+    width: 1000px;
+    height: 500px;
+}
