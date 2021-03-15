@@ -1,82 +1,177 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>Cours JavaScript</title>
-    <meta charset="utf-8">
-    <meta name="viewport">
-    <link rel="stylesheet" href="css/style.css">
-    
-    <script>
-    function checktotext(bool){
-      if(bool === true){
-          return "oui";
-      }else{
-          return "non";
-      }
-    }
-    function verifyname(){
-    inputname = document.getElementById("nom");
+<head>
+    <meta charset='utf-8'>
+    <title>tabletest</title>
+    <link rel="stylesheet" href="csss/main.css">
+</head>
+<body>
+    <h1>Table test</h1>
+
+    <table class="table table-striped table-bordered table-hover">
+        <thead>
+            <tr>
+                <th scope="col">Nom*</th>
+                <th scope="col">Prénom</th>
+                <th scope="col">Date de naissance</th>
+                <th scope="col">J'aime le cours web</th>
+                <th scope="col">Remarques</th>
+                <th scope="col">CRUD</th>
+            </tr>
+        </thead>
+        <tbody id="tbody">
+        </tbody>
+    </table>
+
+
+<script>
+function verifyname(){
+    inputname = document.getElementById("nominput");
     namevalidation = document.getElementById("namevalidation");
     
     
     if(inputname.value == ""){
         namevalidation.innerHTML = "Veuillez entrer un nom";
-        namevalidation.classList.add("text-danger");
         return false;
     }else{
         namevalidation.innerHTML = "";
-        namevalidation.classList.remove("text-danger");
         return true;
+    }
+}
+
+var compteur = 0;
+
+function deleterow(nb){
+    tr = document.getElementById(nb);
+    confirmation = confirm("voulez vous supprimer cette ligne ?");
+    if (confirmation){
+      while(tr.firstChild){
+        tr.removeChild(tr.firstChild);
+    }
+    }
+    
+}
+
+function changerow(nb){
+    list = [];
+    tr = document.getElementById(nb);
+    for(i=0; i<5; i++){
+        list.push(tr.childNodes[i].innerHTML);
+    }
+
+    confirmation = confirm("voulez vous modifier les éléments de cette ligne ?");
+    if (confirmation){
+        newname = prompt("Veuillez entrer un nom :", list[0]);
+        while(newname == "" || newname=== null){
+            alert("Vous devez entrer un nom pour continuer");
+            newname = prompt("Veuillez entrer un nom:", list[0]);
+        }
+        newprenom = prompt("Nouveau prénom", list[1]);
+        newdate = prompt("Veuillez entrer une nouvelle date de naissance", list[2]);
+        newrem = prompt("Nouvelles remarques :", list[4]);
+
+    }
+
+    while(tr.firstChild){
+        tr.removeChild(tr.firstChild);
+    }
+    
+    // Nom
+    thnom = document.createElement('th');
+    thnom.innerHTML = newname;
+    
+    // Prenom
+    thprenom = document.createElement('th');
+    thprenom.innerHTML = newprenom;
+
+    // Date
+    thdate = document.createElement('th');
+    thdate.innerHTML = newdate;
+    
+    // Check
+    thcheck = document.createElement("th");
+    thcheck.innerHTML = translateckeck(newcheck);
+
+    // Remarques
+    threm = document.createElement("th");
+    threm.innerHTML = newrem;
+
+
+    tr.appendChild(thnom);
+    tr.appendChild(thprenom);
+    tr.appendChild(thdate);
+    tr.appendChild(thcheck);
+    tr.appendChild(threm);
+
+    // boutons
+    buttonchange = document.createElement("button");
+    buttonchange.innerHTML = "CHANGE";
+
+    buttonchange.addEventListener("click", function(){changerow(nb)}, false);
+
+    buttondelete = document.createElement("button");
+    buttondelete.innerHTML = "DELETE";
+
+    buttondelete.addEventListener("click", function(){deleterow(nb)}, false);
+
+
+    tr.appendChild(buttonchange);
+    tr.appendChild(buttondelete);
+
+}
+
+function translateckeck(bool){
+    if(bool === true){
+        return "oui";
+    }else{
+        return "non";
     }
 }
 
 
 
-      function onFormSubmit(){
-        event.preventDefault();
-        var nom = document.getElementById("nom").value;
-        var prenom = document.getElementById("prenom").value;
-        var date = document.getElementById("date").value;
-        var adore = checktotext(document.getElementById("adore").checked);
-        var remarque = document.getElementById("remarque").value;
-        var body = document.getElementById("table");
+function onFormSubmit(){
+    compteur +=1;
+    event.preventDefault();
+    if(verifyname()){
+        document.getElementById("tbody").innerHTML += "<tr id='"+compteur+"'><th>"+ document.getElementById("nominput").value + "</th><th>"+ document.getElementById("prenominput").value+ "</th><th>"+document.getElementById("dateinput").value + "</th><th>"+ translateckeck(document.getElementById("checkinput").checked)+"</th><th>"+ document.getElementById("remarqueinput").value + "</th><th>"+"<button class='btn btn-primary' onclick='changerow("+compteur+")'>CHANGE</button>"+"<button class='btn btn-danger' onclick='deleterow("+compteur+")'>DELETE</button>"+"</th></tr>";
+    }
+}
 
-        if(verifyname()){
-          body.innerHTML += "<tr><td>"+nom+"</td><td>"+prenom+"</td><td>"+date+"</td><td>"+adore+"</td><td>"+remarque+"</td><th><button name=\"edit\">edit</button></th></tr>";
-        }
-        
-      }
-    </script>
+</script>
 
-  </head>
-  <body>
+<div class="formulaire">
+<form onsubmit="onFormSubmit();" autocomplete="off" class="needs-validation" novalidate>
+    <div>
+        <label for="nom">Nom*</label>
+        <input type="text" id="nominput" required>
+        <small id="namevalidation"></small>
+    </div>
+    <div class="form-group">
+        <label for="prenom">Prénom</label>
+        <input type="text" id="prenominput">
+    </div>
+    <div class="form-group">
+        <label for="date">Date de naissance</label>
+        <input type="date" id="dateinput" placeholder="mm/dd/yyyy">
+    </div>
+    <div class="form-group form-check">
+        <input type="checkbox" id="checkinput">
+        <label for="check">Adore le cours</label>
+    </div>
+    <div class="form-group">
+        <label for="remarques">Remarques</label>
+        <textarea id="remarqueinput" rows="2"></textarea>
+    </div>
+    <button type="submit" class="btn btn-primary">Submit</button>
+    
+</form>
+</div>
 
-    <table id = "table">
-      <tr>
-        <th>Nom</th>
-        <th>Prénom</th>
-        <th>Date</th>
-        <th>Adore</th>
-        <th>Remarques</th>
-      </tr>
-    </table>
 
 
-    <form onsubmit="onFormSubmit()" autocomplete="off" novalidate>
-      <div>
-        <input name="nom" type="text" placeholder="Votre nom" id="nom"><br>
-        <small id="namevalidation" ></small>  
-      </div>
-      
-      <input name="prenom" type="text" placeholder="Votre prénom" id="prenom"><br>
-      <input name="date" type="date" id="date"><br>
-      <p>adore le cours ?</p>
-      <input name="adore" type="checkbox" id="adore" class=".cb"><br>
-      <input name="remarque" type="text" placeholder="Remarques" id="remarque"><br>
 
-      <input name="submit" type="submit" value="Submit">
 
-    </form>
-
-  </body>
+</body>
 </html>
+
