@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Cours JavaScript</title>
+    <meta charset="utf-8">
+    <meta name="viewport">
+    <link rel="stylesheet" href="css/style.css">
+    
+    <script>
+    function checktotext(bool){
+      if(bool === true){
+          return "oui";
+      }else{
+          return "non";
+      }
+    }
+    function verifyname(){
+    inputname = document.getElementById("nom");
+    namevalidation = document.getElementById("namevalidation");
+    
+    
+    if(inputname.value == ""){
+        namevalidation.innerHTML = "Veuillez entrer un nom";
+        namevalidation.classList.add("text-danger");
+        return false;
+    }else{
+        namevalidation.innerHTML = "";
+        namevalidation.classList.remove("text-danger");
+        return true;
+    }
+}
+
+
+
+      function onFormSubmit(){
+        event.preventDefault();
+        var nom = document.getElementById("nom").value;
+        var prenom = document.getElementById("prenom").value;
+        var date = document.getElementById("date").value;
+        var adore = checktotext(document.getElementById("adore").checked);
+        var remarque = document.getElementById("remarque").value;
+        var body = document.getElementById("table");
+
+        if(verifyname()){
+          body.innerHTML += "<tr><td>"+nom+"</td><td>"+prenom+"</td><td>"+date+"</td><td>"+adore+"</td><td>"+remarque+"</td><th><button name=\"edit\">edit</button></th></tr>";
+        }
+        
+      }
+    </script>
+
+  </head>
+  <body>
+
+    <table id = "table">
+      <tr>
+        <th>Nom</th>
+        <th>Prénom</th>
+        <th>Date</th>
+        <th>Adore</th>
+        <th>Remarques</th>
+      </tr>
+    </table>
+
+
+    <form onsubmit="onFormSubmit()" autocomplete="off" novalidate>
+      <div>
+        <input name="nom" type="text" placeholder="Votre nom" id="nom"><br>
+        <small id="namevalidation" ></small>  
+      </div>
+      
+      <input name="prenom" type="text" placeholder="Votre prénom" id="prenom"><br>
+      <input name="date" type="date" id="date"><br>
+      <p>adore le cours ?</p>
+      <input name="adore" type="checkbox" id="adore" class=".cb"><br>
+      <input name="remarque" type="text" placeholder="Remarques" id="remarque"><br>
+
+      <input name="submit" type="submit" value="Submit">
+
+    </form>
+
+  </body>
+</html>
