@@ -1,0 +1,70 @@
+/* General */
+
+body,html {
+    margin:0;
+    padding: 0;
+
+}
+
+body{
+    background-color: black;
+    
+}
+
+/* Chess */
+
+.content{
+    display: flex;
+    justify-content: center;
+}
+
+h1 {
+    color: lightgrey;
+}
+
+h3 {
+    color:  white;
+}
+
+.content-title {
+    text-align: center;
+}
+
+.row {
+    display: flex;
+}
+
+
+/* Cells */
+
+:root {
+    --black-color: rgb(117, 117, 117);
+    --white-color: white;
+}
+
+
+.cell {
+    height: 50px;
+    width: 50px;
+    border: 1px solid black;
+}
+
+.cell:hover {
+    background-color:cadetblue;
+}
+
+.white {
+    background-color: var(--white-color);
+}
+
+.black {
+    background-color: var(--black-color);
+}
+
+/* chess pieces */
+
+p {
+
+    font-size: xxx-large;
+    margin-top: -10px;
+}
